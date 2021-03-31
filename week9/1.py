@@ -128,8 +128,53 @@ def draw_sin():
         real_x += real_dx
         x += dx
     pygame.draw.aalines(display, RED, False, points_sin)
+
+
 # def insert_txt1():
 #     y =
+f_of_x = []
+
+
+def get_fx():
+    fx = -1
+    while fx <= 1.00:
+        font = pygame.font.SysFont(str(fx), 20)
+        f_of_x.append(font.render(str(fx), True, BLACK))
+        fx += 0.25
+
+
+def fill_fx():
+    get_fx()
+    y = 450
+    for text in f_of_x:
+        display.blit(text, (0, y - 5))
+        y -= 50
+
+
+X = []
+
+
+def get_x():
+    x = -3
+    cnt = 0
+    while x <= 3:
+        if cnt % 2 == 0:
+            font = pygame.font.SysFont(f'{str(x)}pi', 20)
+            X.append(font.render(f'{str(x)}pi', True, BLACK))
+        else:
+            font = pygame.font.SysFont(f'{str(int(x * 2))}/2pi', 20)
+            X.append(font.render(f'{str(int(x * 2))}/2pi', True, BLACK))
+        cnt += 1
+        x += 0.5
+
+
+def fill_x():
+    get_x()
+    x = 50
+    for value in X:
+        display.blit(value, (x - 5, 480))
+        x += 50
+
 
 display.fill(WHITE)
 pygame.draw.rect(display, BLACK, (30, 30, 640, 440), 2)
@@ -141,7 +186,8 @@ draw_something3()
 draw_something4()
 draw_cos()
 draw_sin()
-
+fill_fx()
+fill_x()
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
