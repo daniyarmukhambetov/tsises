@@ -105,8 +105,8 @@ def draw_cos():
     x = -3 * math.pi
     real_x = 50
     # float(real_x)
-    dx = math.pi / 1000
-    real_dx = 100 / 1000
+    dx = math.pi / 100
+    real_dx = 100 / 100
     points_cos = []
     while real_x <= 650:
         pair = (real_x, 250 - 200 * math.cos(x))
@@ -116,11 +116,13 @@ def draw_cos():
     pygame.draw.aalines(display, BLUE, False, points_cos)
 
 
+# pygame.draw.line()
+# pygame.draw.lines()
 def draw_sin():
     real_x = 50
     x = -3 * math.pi
-    real_dx = 100 / 1000
-    dx = math.pi / 1000
+    real_dx = 100 / 100
+    dx = math.pi / 100
     points_sin = []
     while real_x <= 650:
         pair = (real_x, 250 - math.sin(x) * 200)
@@ -176,6 +178,13 @@ def fill_x():
         x += 50
 
 
+def draw_cos_dashed():
+    for x in range(50, 651, 3):
+        cos_y1 = 200 * math.cos((x - 50) / 100 * math.pi)
+        cos_y2 = 200 * math.cos((x - 49) / 100 * math.pi)
+        pygame.draw.aalines(display, BLUE, False, [(x, 250 + cos_y1), ((x + 1), 250 + cos_y2)])
+
+
 display.fill(WHITE)
 pygame.draw.rect(display, BLACK, (30, 30, 640, 440), 2)
 draw_horizontals()
@@ -184,8 +193,9 @@ draw_something1()
 draw_something2()
 draw_something3()
 draw_something4()
-draw_cos()
+# draw_cos()
 draw_sin()
+draw_cos_dashed()
 fill_fx()
 fill_x()
 while not done:
